@@ -1,6 +1,5 @@
 package io.slawek.springbootstarter.lesson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,28 +10,24 @@ public class LessonService {
 	
 	@Autowired
 	private LessonRepository lessonRepository;
+
+	public List<Lesson> getAllLessons() { return (List<Lesson>) lessonRepository.findAll(); }
 	
-	
-	public List<Lesson> getAllLessons(String courseId) {
-		List<Lesson> lessons = new ArrayList<>();
-		lessonRepository.findByCourseId(courseId).forEach(lessons::add);
-		return lessons;
-	}
-	
-	public Lesson getLesson(String id) {
-		return lessonRepository.findOne(id);
+	public Lesson getLessonById(Long id) {
+	    return lessonRepository.findOne(id);
 	}
 
-	public void addLesson(Lesson course) {
-		lessonRepository.save(course);
+	public Lesson addLesson(Lesson lesson) {
+		lessonRepository.save(lesson);
+		return lesson;
 	}
 
-	public void updateLesson(Lesson course) {
-		lessonRepository.save(course);
+	public void updateLesson(Lesson lesson) {
+	    lessonRepository.save(lesson);
 	}
 
-	public void deleteLesson(String id) {
-		lessonRepository.delete(id);
+	public void deleteLessonById(Long id) {
+	    lessonRepository.delete(id);
 	}
 		
 }

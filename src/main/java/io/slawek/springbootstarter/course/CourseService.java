@@ -1,6 +1,5 @@
 package io.slawek.springbootstarter.course;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +12,22 @@ public class CourseService {
 	private CourseRepository courseRepository;
 	
 	
-	public List<Course> getAllCourses(String topicId) {
-		List<Course> courses = new ArrayList<>();
-		courseRepository.findByTopicId(topicId).forEach(courses::add);
-		return courses;
-	}
+	public List<Course> getAllCourses() { return (List<Course>) courseRepository.findAll(); }
 	
-	public Course getCourse(String id) {
+	public Course getCourseById(Long id) {
 		return courseRepository.findOne(id);
 	}
 
-	public void addCourse(Course course) {
+	public Course addCourse(Course course) {
 		courseRepository.save(course);
+		return course;
 	}
 
 	public void updateCourse(Course course) {
 		courseRepository.save(course);
 	}
 
-	public void deleteCourse(String id) {
+	public void deleteCourseById(Long id) {
 		courseRepository.delete(id);
 	}
 		

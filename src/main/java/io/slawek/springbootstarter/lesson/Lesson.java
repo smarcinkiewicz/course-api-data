@@ -11,7 +11,7 @@ import io.slawek.springbootstarter.topic.Topic;
 public class Lesson {
 
 	@Id
-	private String id;
+	private Long id;
 	private String name;
 	private String description;
 	@ManyToOne
@@ -19,24 +19,12 @@ public class Lesson {
 	@ManyToOne
 	private Topic topic;
 	
-	public Lesson() {	
-	}
+	public Lesson() { }
 	
-	public Lesson(String id, String name, String description, String topicId, String courseId) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.topic = new Topic(topicId, "", "");
-		this.course = new Course(courseId, "", "", "");
-	}
-	
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	public void setId(Long id) { this.id = id; }
 	public String getName() {
 		return name;
 	}
@@ -49,20 +37,17 @@ public class Lesson {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 	public Topic getTopic() {
 		return topic;
 	}
-
 	public void setTopic(Topic topic) {
 		this.topic = topic;
 	}
-	
 	public Course getCourse() {
 		return course;
 	}
-
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+
 }

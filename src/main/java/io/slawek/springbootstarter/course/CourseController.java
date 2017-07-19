@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.slawek.springbootstarter.topic.Topic;
-
 @RestController
 public class CourseController {
 	
@@ -20,30 +18,29 @@ public class CourseController {
 	private CourseService courseService;
 	
 	@RequestMapping("topics/{id}/courses")
-	public List<Course> getAllCourses(@PathVariable String id) {
-		return courseService.getAllCourses(id);
+	public List<Course> getAllCourses() {
+		return courseService.getAllCourses();
 	}
 	
 	@RequestMapping("topics/{topicId}/courses/{id}")
-	public Course getCourse(@PathVariable String id) {
-		return courseService.getCourse(id);
+	public Course getCourseById(@PathVariable Long id) {
+		return courseService.getCourseById(id);
 	}
 	
 	@PostMapping("/topics/{topicId}/courses")
-	public void addCourse(@RequestBody Course course, @PathVariable String topicId) {
-		course.setTopic(new Topic(topicId, "", ""));
+	public Course addCourse(@RequestBody Course course) {
 		courseService.addCourse(course);
+		return course;
 	}
 	
 	@PutMapping("/topics/{topicId}/courses/{id}")
-	public void updateCourse(@RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
-		course.setTopic(new Topic(topicId, "", ""));
+	public void updateCourse(@RequestBody Course course) {
 		courseService.updateCourse(course);
 	}
 	
 	@DeleteMapping("/topics/{topicId}/courses/{id}")
-	public void deleteCourse(@PathVariable String id) {
-		courseService.deleteCourse(id);
+	public void deleteCourseById(@PathVariable Long id) {
+		courseService.deleteCourseById(id);
 	}
 
 }
